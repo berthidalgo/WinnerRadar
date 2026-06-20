@@ -1,0 +1,15 @@
+Actúa como Senior Data Engineer. Tengo un TXT completo del perfil de un anunciante
+infiltrado en Meta Ads Library (nombre: {fanpage_name}).
+
+OBJETIVO:
+Genera script Python que extraiga del TXT completo:
+1. Lista de productos/servicios detectados (front-end visibles y back-end inferidos)
+2. Tipos de embudo presente (WhatsApp, Web, Landing, Formulario, DM) con % de cada uno
+3. Rangos de precios y patrones de oferta detectados
+4. Ángulos de venta dominantes (salud, ahorro, urgencia, autoridad, etc.)
+5. CTAs más frecuentes
+6. Ads activos vs inactivos: ratio de actividad
+
+Guardar en "output/infiltracion/reporte_{fanpage_name}.csv"
+Output: 1 fila por producto/servicio detectado, con columnas para cada punto anterior.
+Registrar timestamp en "output/ejecuciones_log.csv".

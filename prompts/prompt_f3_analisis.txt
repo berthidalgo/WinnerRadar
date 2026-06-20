@@ -1,0 +1,16 @@
+Actúa como experto en Marketing Directo y Psicología de Ventas.
+Lee el CSV "bd_meta_ads_{keyword}.csv", columna Copy_Completo.
+
+Para CADA copy, devuelve un objeto JSON con:
+- Hook_Principal: primeras 1-2 líneas que captan atención
+- Pain_Point: problema emocional/físico/financiero que ataca
+- Objection_Killed: objeción que mata (precio, confianza, tiempo, resultados)
+- Sales_Angle: salud, estética, ahorro, urgencia, autoridad, estatus, miedo
+- Tone: agresivo, educativo, empático, científico, humorístico
+- Target_Audience: perfil inferido (edad, género, situación)
+- CTA_Type: qué acción pide (comprar, agendar, descargar, contactar)
+- Winner_Score: puntuación 0-100
+  Pesos: Hook 30% · Pain_Point 25% · Objection_Killed 20% · Sales_Angle 15% · CTA 10%
+
+Guardar resultado en "output/reportes_ia/analisis_copies_{keyword}.json"
+Devolver SOLO JSON válido. Sin preamble, sin backticks, sin explicaciones.

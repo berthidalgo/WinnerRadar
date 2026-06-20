@@ -1,0 +1,48 @@
+Actúa como Senior Data Engineer experto en scraping de Meta Ads Library.
+
+CONTEXTO:
+Tengo un archivo .txt copiado manualmente de la Meta Ads Library. El formato SIEMPR contiene bloques con esta estructura (puede variar el idioma pero la estructura es la misma):
+
+---
+Activo
+Identificador de la biblioteca: [NÚMERO]
+En circulación desde el [DD MMM AAAA]
+Plataformas
+[NÚMERO DE IMPRESIONES BAJO/ALTO]
+[N] anuncios usan este contenido y texto
+[Nombre Fanpage]
+[Nombre Fanpage]
+Publicidad
+[TEXTO DEL COPY COMPLETO]
+[POSIBLE DURACIÓN: MM:SS / MM:SS]
+---
+
+OBJETIVO:
+Genera un script Python (pandas + regex) AGNÓSTICO a la industria.
+Debe funcionar para CUALQUIER keyword (producto, servicio, real estate, etc.).
+
+REQUISITOS:
+1. Leer el archivo .txt desde "data/meta_ads_raw/{keyword}_raw.txt"
+2. Dividir en bloques usando "Identificador de la biblioteca:" como ancla infalible
+3. Por cada bloque extraer:
+   - Fanpage: última línea válida antes de "Publicidad" (excluir: Plataformas, Activo,
+     Identificador, En circulación, Número de impresiones)
+   - Ad_ID: número después de "Identificador de la biblioteca:"
+   - Start_Date: fecha después de "En circulación desde el"
+   - Days_Active: calcular desde hoy (meses en español: ene, feb, mar, abr, may, jun,
+     jul, ago, sep, oct, nov, dic)
+   - Creative_Variants: número antes de "anuncios usan este contenido" (default 1)
+   - Impressions_Level: "Bajo" / "Alto" / "Normal" según texto presente
+   - Format: "Video" si hay patrón MM:SS / MM:SS, sino "Imagen"
+   - Duration: el segundo tiempo MM:SS si existe
+   - Embudo: "WhatsApp" si wa.me/WhatsApp, "Web" si http, "Formulario" si formulario,
+     sino "Otro"
+   - Oferta: regex para "2x1", "S/\d+", "USD \d+", "% OFF", "Gratis"
+   - Copy_Completo: todo el texto entre "Publicidad" y la duración/número de impresiones
+4. Guardar en "output/radar/bd_meta_ads_{keyword}.csv" con encoding utf-8-sig
+5. Imprimir primeras 5 filas para validar
+6. Manejar errores gracefully (try/except por bloque, log de bloques fallidos)
+7. Al final: imprimir "Bloques detectados: X | Bloques parseados: Y | Fallos: Z"
+8. Código robusto, comentado, listo para producción
+
+NO hardcodees ninguna industria. El parser debe ser UNIVERSAL.

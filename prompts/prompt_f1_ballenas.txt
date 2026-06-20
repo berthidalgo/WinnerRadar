@@ -1,0 +1,15 @@
+Actúa como Data Scientist. Tengo un CSV "bd_meta_ads_{keyword}.csv" con resultados del Radar.
+
+Genera script Python que:
+1. Lea el CSV
+2. Aplique filtro de Ballenas:
+   - Days_Active >= 7 (Scaler confirmado)
+   - Creative_Variants >= 2 (creative testing validado)
+3. Agrupe por Fanpage_Name y calcule:
+   - total_ads_por_fanpage
+   - avg_days_active
+   - max_creative_variants
+4. Cree "Ballena_Score" = (total_ads * 0.4) + (avg_days * 0.3) + (max_variants * 0.3)
+5. Ordene descendente y guarde Top 10 en "output/infiltracion/ballenas_{keyword}.csv"
+6. Imprima Top 5 con sus métricas
+7. Registre timestamp de ejecución en "output/ejecuciones_log.csv" (heartbeat manual)
