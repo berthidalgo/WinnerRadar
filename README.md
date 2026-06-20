@@ -74,6 +74,10 @@ winner-radar/
 └── docs/
 ```
 
+## Contribuidores
+
+- [berthidalgo](https://github.com/berthidalgo) - Desarrollador Principal
+
 ## Comenzar a trabajar
 
 1. Instalar dependencias:
